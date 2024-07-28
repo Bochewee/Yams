@@ -81,8 +81,7 @@ function getScoresFromLocalStorage() {
 
 function generateGrid() {
     const players = getPlayersFromLocalStorage();
-    let gridHTML = '<h2>Yams grille par Flo</h2>';
-    gridHTML += '<table border="1"><tr><th></th>';
+    let gridHTML = '<table><tr><th></th>';
 
     players.forEach(player => {
         gridHTML += `<th>${player}</th>`;
@@ -132,8 +131,7 @@ function generateGrid() {
     });
 
     gridHTML += '</table>';
-    gridHTML += '<button type="button" onclick="checkCompletion()">Finir la partie</button>';
-    document.body.innerHTML = gridHTML;
+    document.getElementById('gridContainer').innerHTML = gridHTML;
 
     // Ajouter des écouteurs pour les champs de points
     players.forEach((_, index) => {
@@ -249,6 +247,7 @@ function checkCompletion() {
     });
 
     const resultDiv = document.createElement('div');
+    resultDiv.id = 'winner-message';
     if (allFilled) {
         let highestScore = 0;
         let winner = '';
@@ -266,28 +265,37 @@ function checkCompletion() {
                 scores[player] = { wins: 0, totalPoints: 0 };
             }
             scores[player].totalPoints += score;
-            if (player === winner) {
-                scores[player].wins += 1;
-            }
         });
+
+        if (winner) {
+            scores[winner].wins += 1;
+        }
 
         saveScoresToLocalStorage(scores);
 
-        resultDiv.innerHTML = `Tous les champs sont remplis. Le jeu est terminé! <br> Le gagnant est : ${winner} avec ${highestScore} points.<br><button onclick="restartGame()">Relancer la partie</button><br><button onclick="window.location.href='index.html'">Retour au menu</button>`;
+        resultDiv.innerHTML = `
+            <p>Tous les champs sont remplis. Le jeu est terminé!</p>
+            <p>Le gagnant est : ${winner} avec ${highestScore} points.</p>
+            <button onclick="restartGame()">Relancer la partie</button>
+            <button onclick="window.location.href='index.html'">Retour au menu</button>
+        `;
     } else {
-        resultDiv.innerHTML = `<p>Il reste des champs non remplis:</p><ul>${missingFields.map(field => `<li>${field}</li>`).join('')}</ul>`;
+        resultDiv.innerHTML = `
+            <p>Il reste des champs non remplis:</p>
+            <ul>${missingFields.map(field => `<li>${field}</li>`).join('')}</ul>
+        `;
     }
     document.body.appendChild(resultDiv);
 }
 
 function restartGame() {
-    localStorage.removeItem('yamsPlayers');
-    window.location.href = 'player_setup.html';
+    const players = getPlayersFromLocalStorage();
+    window.location.href = 'grid.html';
 }
 
 function displayScores() {
     const scores = getScoresFromLocalStorage();
-    let scoresHTML = '<table border="1"><tr><th>Joueur</th><th>Victoires</th><th>Points Totaux</th><th>Action</th></tr>';
+    let scoresHTML = '<table><tr><th>Joueur</th><th>Victoires</th><th>Points Totaux</th><th>Action</th></tr>';
     for (const player in scores) {
         scoresHTML += `<tr><td>${player}</td><td>${scores[player].wins}</td><td>${scores[player].totalPoints}</td><td><button onclick="deletePlayer('${player}')">Supprimer</button></td></tr>`;
     }

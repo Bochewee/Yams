@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="player-setup-page">
-    <h1>Configuration des joueurs</h1>
-    <form id="playerForm">
-        <div id="playerNames"></div>
-        <button type="button" onclick="addPlayer()">Ajouter un joueur</button>
-        <button type="submit">Commencer la partie</button>
-        <button type="button" onclick="window.location.href='index.html'">Retour au menu</button>
-    </form>
-    <p id="error-message" style="color: red; display: none;">Il faut ajouter au moins deux joueurs pour commencer la partie.</p>
+    <div class="menu">
+        <h1>Configuration des joueurs</h1>
+        <form id="playerForm">
+            <div id="playerNames"></div>
+            <button type="button" onclick="addPlayer()">Ajouter un joueur</button>
+            <button type="submit">Commencer la partie</button>
+            <button type="button" onclick="window.location.href='index.html'">Retour au menu</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Il faut ajouter au moins deux joueurs pour commencer la partie.</p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
