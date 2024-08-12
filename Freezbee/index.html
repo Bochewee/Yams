@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu de Freezbee</title>
     <link rel="stylesheet" href="../styles.css">
-    <script async src="https://docs.opencv.org/3.4.0/opencv.js" type="text/javascript"></script>
 </head>
 <body class="game-freezbee-page">
     <div class="menu">
@@ -13,17 +12,6 @@
         <div id="gameContainerFreezbee"></div>
         <button type="button" onclick="checkCompletion()">Terminer la partie</button>
         <button type="button" onclick="window.location.href='menu.html'">Retour au menu</button>
-    </div>
-
-    <!-- Modal pour capturer une image ou télécharger un fichier -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <video id="video" width="640" height="480" autoplay></video>
-            <button id="snap">Prendre une photo</button>
-            <input type="file" id="upload" accept="image/*">
-            <canvas id="canvas" width="640" height="480"></canvas>
-        </div>
     </div>
 
     <script src="script_freezbee.js"></script>
