@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu de Freezbee</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="game-freezbee-page">
     <div class="menu">
         <h1>Jeu de Freezbee</h1>
-        <div id="gameContainerFreezbee"></div>
+
+        <div class="game-container">
+            <!-- Canvas pour dessiner la cible -->
+            <canvas id="targetCanvas" width="400" height="400"></canvas>
+            <div id="liveScoreContainer">
+                <h2>Score en cours</h2>
+                <p id="liveScore">0</p>
+            </div>
+        </div>
+        
+        <!-- Conteneur du tableau des scores -->
+        <div id="gameContainerFreezbee">
+            <!-- Le tableau des joueurs sera inséré ici via JS -->
+        </div>
+        
+        <button type="button" onclick="nextPlayer()">Terminer le tour</button>
         <button type="button" onclick="checkCompletion()">Terminer la partie</button>
         <button type="button" onclick="window.location.href='menu.html'">Retour au menu</button>
     </div>
