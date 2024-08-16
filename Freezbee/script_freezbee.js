@@ -31,6 +31,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function addPlayer() {
+    const playerNamesDiv = document.getElementById('playerNames');
+    const playerCount = playerNamesDiv.children.length + 1;
+
+    const playerContainer = document.createElement('div');
+    playerContainer.classList.add('player-container');
+    playerContainer.id = `player-${playerCount}`;
+
+    const label = document.createElement('label');
+    label.textContent = `Nom du joueur ${playerCount}`;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = `player${playerCount}`;
+    input.required = true;
+
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.textContent = 'Supprimer';
+    removeButton.onclick = function() {
+        playerContainer.remove();
+        updatePlayerLabels();
+    };
+
+    playerContainer.appendChild(label);
+    playerContainer.appendChild(input);
+    playerContainer.appendChild(removeButton);
+
+    playerNamesDiv.appendChild(playerContainer);
+}
+
+function updatePlayerLabels() {
+    const playerContainers = document.querySelectorAll('.player-container');
+    playerContainers.forEach((container, index) => {
+        const label = container.querySelector('label');
+        label.textContent = `Nom du joueur ${index + 1}`;
+        const input = container.querySelector('input');
+        input.name = `player${index + 1}`;
+        container.id = `player-${index + 1}`;
+    });
+}
+
+
 function handleClick(event) {
     const canvas = document.getElementById('targetCanvas');
     const rect = canvas.getBoundingClientRect();
