@@ -14,7 +14,7 @@ function saveScoresToLocalStorage(scores) {
 
 function displayScores() {
     const scores = getScoresFromLocalStorage();
-    let scoresHTML = '<table><tr><th>Joueur</th><th>Victoires</th><th>Points Totaux</th><th>Action</th></tr>';
+    let scoresHTML = '<table><tr><th>| Joueur |</th><th> Victoires |</th><th> Points Totaux |</th><th>Action</th></tr>';
     
     // Parcourir chaque joueur dans l'objet scores
     for (const player in scores) {

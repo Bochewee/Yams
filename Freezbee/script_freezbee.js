@@ -72,7 +72,6 @@ function updatePlayerLabels() {
     });
 }
 
-
 function handleClick(event) {
     const canvas = document.getElementById('targetCanvas');
     const rect = canvas.getBoundingClientRect();
@@ -91,7 +90,7 @@ function handleClick(event) {
     } else if (distanceFromCenter <= 160) {
         points = 10; // Bleu
     } else {
-        points = 0; // Blanc
+        points = 0; // Gris
     }
 
     if (clickCount < maxClicks) {
@@ -270,7 +269,6 @@ function generateGrid() {
     // Insérer la grille dans l'élément "gameContainerFreezbee"
     gameContainer.innerHTML = gridHTML;
 }
-
 
 function updateTotal(playerIndex) {
     let total = 0;
